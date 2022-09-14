@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+{% block title %}Beginning of my Symfony
+{% endblock %}
+
+{% block body %}
+
+<h1>
+	Welcome to this test test TestController
+</h1>
+
+<h2>
+	{{ msg }}
+	{{ dump(msg)}}
+</h2>
+
+<h3>
+	{% if name %}
+		<p>{{name}}
+			you are human</p>
+	{% else %}
+		<p>
+			You have to type the name in
+		</p>
+	{% endif %}
+</h3>
+<h4>
+{% for movie in movies %}
+    <li> {{movie}}</li>
+{% endfor %}
+</h4>
+
+{% endblock %}
+

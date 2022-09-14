@@ -1,0 +1,30 @@
+   composer.json irasiau   "laminas/laminas-code": "~4.7.0@dev",
+
+    symfony console debug:router <<-- list all the routes available for the project
+
+    #[Route('/test/{name}', name: 'app_test', defaults: ['name' => null], methods:['GET', 'HEAD'])]
+
+    composer require twig    
+
+    settings.json faile irasiau: (kad handlintu twig kaip html)
+  "emmet.includeLanguages": {"twig": "html"},
+
+  symfony console doctrine:database:create
+
+  Kad veiktu pries tai buvusi komanda:
+  composer require symfony/orm-pack
+composer require --dev symfony/maker-bundle   --- no  --- yes
+
+.env file:
+DATABASE_URL="mysql://root:@127.0.0.1:3306/app?serverVersion=8&charset=utf8mb4"
+
+
+
+------------ back to form creation ------------
+ symfony console make:migration            
+ symfony console doctrine:migrations
+ symfony console doctrine:migrations:migrate
+
+ composer require form validation
+
+ symfony console make:form SubscriberFormType Subscriber   <<-- 2nd entity name = Subscriber
