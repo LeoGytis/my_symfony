@@ -14,6 +14,7 @@ class Subscriber
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    // #[Assert\NotBlank]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
