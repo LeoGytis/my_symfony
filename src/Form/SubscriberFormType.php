@@ -6,18 +6,26 @@ use App\Entity\Subscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class SubscriberFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
+            ->add('firstName', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Enter your name here',
+                    'class' => 'custom_class'
+                     ]
+            ])
+            ->add('lastName', TextType::class)
             ->add('email', EmailType::class)
-            ->add('comment')
+            ->add('comment', TextareaType::class)
             ->add('Submit', SubmitType::class)
         ;
     }
