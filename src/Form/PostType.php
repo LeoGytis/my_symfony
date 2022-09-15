@@ -19,7 +19,8 @@ class PostType extends AbstractType
         ->add('firstName', TextType::class, [
             'attr' => [
                 'placeholder' => 'Enter your name here',
-                'class' => 'custom_class'
+                'class' => 'custom_class',
+                'required' => false
                  ]
         ])
         ->add('lastName', TextType::class)

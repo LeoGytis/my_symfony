@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SubscriberRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SubscriberRepository::class)]
 class Subscriber
@@ -14,16 +15,23 @@ class Subscriber
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    // #[Assert\NotBlank]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private ?string $comment = null;
 
     public function getId(): ?int

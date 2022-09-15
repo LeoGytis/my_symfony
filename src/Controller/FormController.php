@@ -21,6 +21,11 @@ class FormController extends AbstractController
     {
         $subscriber = new Subscriber();
 
+        // $em = $this->doctrine->getManager();
+        // $subscriber = $em->getRepository(Post::class)->findOneBy([
+        //     'id' => 4
+        // ]);
+
         // $subscriber->setFirstName('Welcome to my first symfony');
         // $subscriber->setComment('Write your comment here');
 
@@ -35,6 +40,7 @@ class FormController extends AbstractController
 
             // var_dump($subscriber);
 
+            // ----- Saving to the database -----
             $em = $this->doctrine->getManager();
             $em->persist($subscriber);
             $em->flush();
