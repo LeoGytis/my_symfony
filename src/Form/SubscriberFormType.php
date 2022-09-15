@@ -17,17 +17,12 @@ class SubscriberFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Enter your name here',
-                    'class' => 'custom_class'
-                     ]
-            ])
-            ->add('lastName', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('comment', TextareaType::class)
-            ->add('Submit', SubmitType::class)
-        ;
+        ->add('firstName')
+        ->add('lastName')
+        ->add('email')
+        ->add('comment')
+    ;
+      
     }
 
     public function configureOptions(OptionsResolver $resolver): void
