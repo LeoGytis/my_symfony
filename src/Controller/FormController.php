@@ -7,17 +7,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Subscriber;
+use AppBundle\Event\CommentPublishedEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class FormController extends AbstractController
 {
-
     public function __construct(private ManagerRegistry $doctrine) {}
 
     #[Route('/form', name: 'app_form')]
     
-    public function index(Request $request): Response
+    public function index(Request $request, EventDispatcherInterface $dispatcher): Response
     {
         $subscriber = new Subscriber();
 
@@ -25,9 +26,6 @@ class FormController extends AbstractController
         // $subscriber = $em->getRepository(Post::class)->findOneBy([
         //     'id' => 4
         // ]);
-
-        // $subscriber->setFirstName('Welcome to my first symfony');
-        // $subscriber->setComment('Write your comment here');
 
         $form = $this->createForm(PostType::class, $subscriber, [
             'action' => $this->generateUrl('app_form'),
@@ -44,6 +42,12 @@ class FormController extends AbstractController
             $em = $this->doctrine->getManager();
             $em->persist($subscriber);
             $em->flush();
+
+
+            // ----- Event -----
+            $event = new CommentPublishedEvent($subscriber);
+
+            $dispatcher->dispatch(eventName CommentPublishedEvent::NAME, $event);
         }
 
 
