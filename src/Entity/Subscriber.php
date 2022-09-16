@@ -34,6 +34,8 @@ class Subscriber
     #[Assert\Length(min: 3)]
     private ?string $comment = null;
 
+    protected $captchaCode;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,5 +87,15 @@ class Subscriber
         $this->comment = $comment;
 
         return $this;
+    }
+
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
     }
 }

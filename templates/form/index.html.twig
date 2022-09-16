@@ -9,5 +9,14 @@
 	{{form(subsriber_form)}}
 		{{form_end(subsriber_form)}}
 
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+			<label for="exampleFormControlInput1">Are you a robot</label>
+			{{form_widget(registrationForm.captchaCode)}}
+			</div>
+		</div>
+	</div>
+
 
 	{% endblock %}
