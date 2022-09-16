@@ -31,6 +31,8 @@ class FormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // var_dump($subscriber);
+
             // ----- Saving to the database -----
             $em = $this->doctrine->getManager();
             $em->persist($subscriber);
@@ -39,6 +41,7 @@ class FormController extends AbstractController
 
             // ----- Event -----
             $event = new CommentPublishedEvent($subscriber);
+
             $dispatcher->dispatch($event, CommentPublishedEvent::NAME);
         }
 

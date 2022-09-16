@@ -17,6 +17,8 @@ class CommentPublishedSubscriber implements EventSubscriberInterface {
     public function onCommentPublished(CommentPublishedEvent $event) 
     {
         //send an email to the subscriber
+        var_dump('Comment Publsihed Event is working');
+
         dump($event);
     }
 }
