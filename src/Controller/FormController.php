@@ -10,7 +10,7 @@ use App\Entity\Subscriber;
 use AppBundle\Event\CommentPublishedEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class FormController extends AbstractController
 {
@@ -22,11 +22,6 @@ class FormController extends AbstractController
     {
         $subscriber = new Subscriber();
 
-        // $em = $this->doctrine->getManager();
-        // $subscriber = $em->getRepository(Post::class)->findOneBy([
-        //     'id' => 4
-        // ]);
-
         $form = $this->createForm(PostType::class, $subscriber, [
             'action' => $this->generateUrl('app_form'),
             // 'method' => 'POST'
@@ -36,8 +31,6 @@ class FormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // var_dump($subscriber);
-
             // ----- Saving to the database -----
             $em = $this->doctrine->getManager();
             $em->persist($subscriber);
@@ -46,8 +39,7 @@ class FormController extends AbstractController
 
             // ----- Event -----
             $event = new CommentPublishedEvent($subscriber);
-
-            $dispatcher->dispatch(eventName CommentPublishedEvent::NAME, $event);
+            $dispatcher->dispatch($event, CommentPublishedEvent::NAME);
         }
 
 
